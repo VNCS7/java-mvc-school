@@ -16,7 +16,7 @@ import model.Alunos;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
-public class App extends JFrame {
+public class cadAluno extends JFrame {
 	JTextField txtNome = new JTextField();
 	JLabel nome = new JLabel("NOME: ");
 	
@@ -31,7 +31,7 @@ public class App extends JFrame {
 	
 	JButton btnSalvar = new JButton("Salvar");
 
-	public App(){
+	public cadAluno(){
 		super("Cadastro Alunos");
 		
 		Container paine = this.getContentPane();
@@ -85,7 +85,7 @@ public class App extends JFrame {
 	}
     public static void main( String[] args )
     {
-    	App app = new App();
+    	cadAluno app = new cadAluno();
     }
 
 }
