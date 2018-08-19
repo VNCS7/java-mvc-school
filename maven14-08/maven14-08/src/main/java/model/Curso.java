@@ -23,6 +23,4 @@ public class Curso {
 	public void setCargaHoraria(int cargaHoraria) {
 		this.cargaHoraria = cargaHoraria;
 	}
-	
-
 }

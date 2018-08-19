@@ -16,7 +16,7 @@ public class AlunosJdbcDAO {
 	}
 
 	public void salvar(Alunos c) throws SQLException {
-		String sql = "insert into aluno (nome,endereco,bairro,idCurso) values ('"+c.getNome()+"','"+c.getEndereco()+"','"+c.getBairro()+"','"+c.getIdCurso()+"')";
+		String sql = "insert into aluno (nome,rg,cpf,endereco,bairro,cep,idCurso) values ('"+c.getNome()+"','"+c.getRg()+"','"+c.getCpf()+"','"+c.getEndereco()+"','"+c.getBairro()+"','"+c.getCep()+"','"+c.getIdCurso()+"')";
 		System.out.println(sql);
 		PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
 		prepareStatement.executeUpdate();
@@ -29,6 +29,7 @@ public class AlunosJdbcDAO {
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 }
+	//NECESSITA DE ALTERAÇÕES (FALTANDO COLUNAS NA QUERY)
 	public void atualizar(int idSelect, Alunos c) throws SQLException {
 		String sql = "update alunos set nome='"+c.getNome()+"',endereco='"+c.getEndereco()+"',bairro='"+c.getBairro()+"',idCurso='"+c.getIdCurso()+"'where id = '"+idSelect+"'";
 		System.out.println(sql);

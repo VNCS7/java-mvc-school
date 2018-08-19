@@ -18,7 +18,8 @@ public class ProfessorJdbcDAO {
 	}
 	
 	public void salvar(Professor c) throws SQLException {
-		String sql = "insert into professor (nome,endereco,bairro,idCurso, idDisciplina) values ('"+c.getNome()+"','"+c.getBairro()+"','"+c.getEndereco()+"','"+c.getIdCurso()+"','"+c.getIdDisciplina()+"')";
+		//String sql = "insert into professor (nome,endereco,bairro,idCurso, idDisciplina) values ('"+c.getNome()+"','"+c.getBairro()+"','"+c.getEndereco()+"','"+c.getIdCurso()+"','"+c.getIdDisciplina()+"')";
+		String sql = "insert into professor (nome,rg,cpf,endereco,bairro,cep,idCurso,idDisciplina) values ('"+c.getNome()+"','"+c.getRg()+"','"+c.getCpf()+"','"+c.getEndereco()+"','"+c.getBairro()+"','"+c.getCep()+"','"+c.getIdCurso()+"','"+c.getIdDisciplina()+"')";
 		System.out.println(sql);
 		PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
 		prepareStatement.executeUpdate();
@@ -31,6 +32,7 @@ public class ProfessorJdbcDAO {
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 }
+	//NECESSITA DE ALTERAÇÕES (FALTANDO COLUNAS NA QUERY)
 	public void atualizar(int idSelect, Professor c) throws SQLException {
 		String sql = "update professor set nome='"+c.getNome()+"',endereco='"+c.getEndereco()+"',bairro='"+c.getBairro()+"',idCurso='"+c.getIdCurso()+"',idDisciplina='"+c.getIdDisciplina()+"where id = '"+idSelect+"'";
 		System.out.println(sql);

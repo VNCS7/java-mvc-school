@@ -1,133 +1,94 @@
--- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Aug 12, 2018 at 07:38 PM
--- Server version: 5.7.17
--- PHP Version: 5.6.30
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `dbconnection10aug`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `aluno`
---
 
 CREATE TABLE `aluno` (
   `idAluno` int(11) NOT NULL,
   `nome` varchar(200) NOT NULL,
+  `rg` varchar(200) NOT NULL,
+  `cpf` varchar(200) NOT NULL,
   `endereco` varchar(200) NOT NULL,
   `bairro` varchar(200) NOT NULL,
+  `cep` varchar(200) NOT NULL,
   `idCurso` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `curso`
 --
 
+--
 CREATE TABLE `curso` (
   `idCurso` int(11) NOT NULL,
   `nome` varchar(200) NOT NULL,
   `cargaHoraria` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `disciplina`
 --
 
+--
 CREATE TABLE `disciplina` (
   `idDisciplina` int(11) NOT NULL,
+  `idCurso` int(11) NOT NULL,
   `nomeDisciplina` varchar(200) NOT NULL,
   `cargaHoraria` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `professor`
 --
 
+--
 CREATE TABLE `professor` (
   `idProfessor` int(11) NOT NULL,
   `nome` varchar(200) NOT NULL,
+  `rg` varchar(200) NOT NULL,
+  `cpf` varchar(200) NOT NULL,
   `endereco` varchar(200) NOT NULL,
   `bairro` varchar(200) NOT NULL,
+  `cep` varchar(200) NOT NULL,
   `idCurso` int(11) NOT NULL,
   `idDisciplina` varchar(200) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Indexes for dumped tables
 --
 
---
--- Indexes for table `aluno`
 --
 ALTER TABLE `aluno`
   ADD PRIMARY KEY (`idAluno`);
-
---
--- Indexes for table `curso`
 --
 ALTER TABLE `curso`
   ADD PRIMARY KEY (`idCurso`);
-
---
--- Indexes for table `disciplina`
 --
 ALTER TABLE `disciplina`
   ADD PRIMARY KEY (`idDisciplina`);
-
---
--- Indexes for table `professor`
 --
 ALTER TABLE `professor`
   ADD PRIMARY KEY (`idProfessor`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `aluno`
 --
 ALTER TABLE `aluno`
   MODIFY `idAluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `curso`
---
 ALTER TABLE `curso`
   MODIFY `idCurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `disciplina`
 --
 ALTER TABLE `disciplina`
   MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `professor`
---
 ALTER TABLE `professor`
-  MODIFY `idProfessor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
+  MODIFY `idProfessor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+INSERT INTO `aluno` (`idAluno`, `nome`, `rg`, `cpf`, `endereco`, `bairro`, `cep`, `idCurso`) VALUES
+(7, 'Vinícius Alves Rodrigues', '11.111.111-7', '111.111.111/11', 'R. Antiga Três, 52', 'C. Alves', '11111-111', 5);
+
+--
+
+--
+
+INSERT INTO `curso` (`idCurso`, `nome`, `cargaHoraria`) VALUES
+(5, 'Técnico em Informática', 1500);
+
+--
+
+--
+
+INSERT INTO `disciplina` (`idDisciplina`, `idCurso`, `nomeDisciplina`, `cargaHoraria`) VALUES
+(6, 5, 'Programação de Computadores II', 5);
+
+--
+
+--
+
+INSERT INTO `professor` (`idProfessor`, `nome`, `rg`, `cpf`, `endereco`, `bairro`, `cep`, `idCurso`, `idDisciplina`) VALUES
+(1, 'Jeferson', '22.222.222-2', '222.222.222/22', 'Av. Águia de Haia, 2633', 'Cidade A.E Carvalho', '22222-222', 5, '6');

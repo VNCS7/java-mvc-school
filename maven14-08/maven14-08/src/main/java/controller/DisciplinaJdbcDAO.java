@@ -16,7 +16,7 @@ public class DisciplinaJdbcDAO {
 	}
 	
 	public void salvar(Disciplina disciplina) throws SQLException{
-		String sql = "insert into disciplina (nomeDisciplina,cargaHoraria) values ('"+disciplina.getNomeDisciplina()+"','"+disciplina.getCargaHoraria()+"')";
+		String sql = "insert into disciplina (nomeDisciplina,idCurso,cargaHoraria) values ('"+disciplina.getNomeDisciplina()+"','"+disciplina.getIdCurso()+"','"+disciplina.getCargaHoraria()+"')";
 		System.out.println(sql);
 		PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
 		prepareStatement.executeUpdate();
@@ -29,6 +29,7 @@ public class DisciplinaJdbcDAO {
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 	}
+	//NECESSITA DE ALTERAÇÕES (FALTANDO COLUNAS NA QUERY)
 	public void atualizar(int idSelect, Disciplina disciplina) throws SQLException {
 		String sql = "update curso set nome='"+disciplina.getNomeDisciplina()+"',cargaHoraria='"+disciplina.getCargaHoraria()+"'where idDisciplina = '"+idSelect+"'";
 		System.out.println(sql);
