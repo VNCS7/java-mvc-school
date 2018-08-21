@@ -8,7 +8,8 @@ CREATE TABLE `aluno` (
   `endereco` varchar(200) NOT NULL,
   `bairro` varchar(200) NOT NULL,
   `cep` varchar(200) NOT NULL,
-  `idCurso` int(11) NOT NULL
+  `idCurso` int(11) NOT NULL,
+    FOREIGN KEY (idCurso) REFERENCES curso(idCurso)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 --
 
@@ -25,7 +26,8 @@ CREATE TABLE `disciplina` (
   `idDisciplina` int(11) NOT NULL,
   `idCurso` int(11) NOT NULL,
   `nomeDisciplina` varchar(200) NOT NULL,
-  `cargaHoraria` int(11) NOT NULL
+  `cargaHoraria` int(11) NOT NULL,
+    FOREIGN KEY (idCurso) REFERENCES curso(idCurso)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 --
 
@@ -39,34 +41,36 @@ CREATE TABLE `professor` (
   `bairro` varchar(200) NOT NULL,
   `cep` varchar(200) NOT NULL,
   `idCurso` int(11) NOT NULL,
-  `idDisciplina` varchar(200) NOT NULL
+  `idDisciplina` varchar(200) NOT NULL,
+    FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
+    FOREIGN KEY (idDisciplina) REFERENCES disciplina(idDisciplina)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 --
 
 --
 ALTER TABLE `aluno`
-  ADD PRIMARY KEY (`idAluno`);
+    ADD PRIMARY KEY (`idAluno`);
 --
 ALTER TABLE `curso`
-  ADD PRIMARY KEY (`idCurso`);
+    ADD PRIMARY KEY (`idCurso`);
 --
 ALTER TABLE `disciplina`
-  ADD PRIMARY KEY (`idDisciplina`);
+    ADD PRIMARY KEY (`idDisciplina`);
 --
 ALTER TABLE `professor`
-  ADD PRIMARY KEY (`idProfessor`);
+    ADD PRIMARY KEY (`idProfessor`);
 --
 ALTER TABLE `aluno`
-  MODIFY `idAluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idAluno` int(11) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `curso`
-  MODIFY `idCurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idCurso` int(11) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `disciplina`
-  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `professor`
-  MODIFY `idProfessor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idProfessor` int(11) NOT NULL AUTO_INCREMENT;
 
 
 INSERT INTO `aluno` (`idAluno`, `nome`, `rg`, `cpf`, `endereco`, `bairro`, `cep`, `idCurso`) VALUES
