@@ -23,7 +23,7 @@ public class AlunosJdbcDAO {
 		prepareStatement.close();
 }
 	public void deletar(int idSelect) throws SQLException {
-		String sql = "delete from aluno where id='"+idSelect+"'";		
+		String sql = "delete from aluno where idAluno='"+idSelect+"'";		
 		System.out.println(sql);
 		PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
 		prepareStatement.executeUpdate();
