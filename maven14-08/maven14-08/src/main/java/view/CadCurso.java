@@ -23,7 +23,7 @@ import model.Curso;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
-public class cadCurso extends JFrame {
+public class CadCurso extends JFrame {
 	
 	JTextField txtNome = new JTextField();
 	JLabel nome = new JLabel("NOME: ");
@@ -34,7 +34,7 @@ public class cadCurso extends JFrame {
 	JButton btnSalvar = new JButton("Salvar");
 	JButton btnVoltar = new JButton("Voltar");
 	
-	public cadCurso(){
+	public CadCurso(){
 		super("Cadastro de Curso");
 		
 		Container paine = this.getContentPane();
@@ -102,7 +102,7 @@ public class cadCurso extends JFrame {
 	}
     public static void main( String[] args )
     {
-    	cadCurso cadastrarCurso = new cadCurso();
+    	CadCurso cadastrarCurso = new CadCurso();
     }
 
 }

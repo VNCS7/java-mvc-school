@@ -25,7 +25,7 @@ public App() {
 	btnAluno.setBounds(5, 45, 100, 40);
 	btnAluno.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
-			cadAluno JanelaAluno = new cadAluno();
+			CadAluno JanelaAluno = new CadAluno();
 			dispose();
 		}
 	});
@@ -34,7 +34,7 @@ public App() {
 	btnCurso.setBounds(115, 45, 100, 40);
 	btnCurso.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
-			cadCurso JanelaCurso = new cadCurso();
+			CadCurso JanelaCurso = new CadCurso();
 			dispose();
 		}
 	});
@@ -42,7 +42,7 @@ public App() {
 	btnDisciplina.setBounds(225, 45, 100, 40);
 	btnDisciplina.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
-			cadDisciplina JanelaDisciplina = new cadDisciplina();
+			CadDisciplina JanelaDisciplina = new CadDisciplina();
 			dispose();
 		}
 	});
@@ -50,7 +50,7 @@ public App() {
 	btnProfessor.setBounds(335, 45, 100, 40);
 	btnProfessor.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
-			cadProfessor JanelaProfessor = new cadProfessor();
+			CadProfessor JanelaProfessor = new CadProfessor();
 			dispose();
 		}
 	});

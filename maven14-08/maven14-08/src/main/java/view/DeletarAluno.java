@@ -16,7 +16,7 @@ import controller.AlunosJdbcDAO;
 import controller.JdbUtil;
 import model.Alunos;
 
-public class deletarAluno extends JFrame {
+public class DeletarAluno extends JFrame {
 	
 	JTextField txtID = new JTextField();
 	JLabel ID = new JLabel("ID: ");
@@ -24,8 +24,8 @@ public class deletarAluno extends JFrame {
 	JButton btnSalvar = new JButton("Salvar");
 	JButton btnVoltar = new JButton("Voltar");
 	
-	 public deletarAluno() {
-		 super("Deletar um Aluno!");
+	 public DeletarAluno() {
+		 super("Deletar um Aluno");
 		 
 		 	Container paine = this.getContentPane();
 			
@@ -35,7 +35,7 @@ public class deletarAluno extends JFrame {
 			txtID.setBounds(90, 15, 225, 30);
 			
 			paine.add(btnSalvar);
-			btnSalvar.setBounds(20, 280, 130, 30);
+			btnSalvar.setBounds(20, 60, 130, 30);
 			btnSalvar.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					try {
@@ -64,7 +64,7 @@ public class deletarAluno extends JFrame {
 			});
 			
 			paine.add(btnVoltar);
-			btnVoltar.setBounds(170, 280, 130, 30);
+			btnVoltar.setBounds(170, 60, 130, 30);
 			btnVoltar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					App voltarApp = new App();
@@ -84,13 +84,13 @@ public class deletarAluno extends JFrame {
 			this.setResizable(false);
 			this.setLayout(null);
 			this.setVisible(true);
-			this.setSize(340, 400);
+			this.setSize(340, 130);
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 			this.setLocationRelativeTo(null);
 	 }
 	
 	 public static void main(String args[]) {
-		 deletarAluno delAluno = new deletarAluno();
+		 DeletarAluno delAluno = new DeletarAluno();
 	 }
 	
 }

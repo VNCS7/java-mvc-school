@@ -6,23 +6,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
+import javax.swing.JFrame; 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+
+import com.google.protobuf.TextFormat.ParseException;
 
 import controller.AlunosJdbcDAO;
 import controller.JdbUtil;
 import model.Alunos;
 
-public class atualizarAluno extends JFrame {
-	
-	JTextField txtID = new JTextField();
-	JLabel ID = new JLabel("ID: ");
-	
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JButton;
+
+public class CadAluno extends JFrame {
 	JTextField txtNome = new JTextField();
 	JLabel nome = new JLabel("NOME: ");
 	/// /// ///
@@ -47,10 +48,10 @@ public class atualizarAluno extends JFrame {
 	
 	JButton btnSalvar = new JButton("Salvar");
 	JButton btnVoltar = new JButton("Voltar");
-	
-	
-	public atualizarAluno() {
-		super("Atualizar Aluno");
+
+
+	public CadAluno(){
+		super("Cadastro de Alunos");
 		
 		try {
 			MaskFormatter mrg = new MaskFormatter("##.###.###-#");
@@ -72,105 +73,96 @@ public class atualizarAluno extends JFrame {
 		
 		Container paine = this.getContentPane();
 		
-		paine.add(ID);
-		paine.add(txtID);	
-		ID.setBounds(10, 15, 45, 30);
-		txtID.setBounds(90, 15, 225, 30);
-		
 		paine.add(nome);
 		paine.add(txtNome);	
-		nome.setBounds(10, 50, 45, 30);
-		txtNome.setBounds(90, 50, 225, 30);
+		nome.setBounds(10, 15, 45, 30);
+		txtNome.setBounds(90, 15, 225, 30);
 		/// /// ///
 		paine.add(rg);
 		paine.add(txtRg);
-		rg.setBounds(10,85,70,30);
-		txtRg.setBounds(90, 85, 225, 30);
+		rg.setBounds(10,50,70,30);
+		txtRg.setBounds(90, 50, 225, 30);
 		/// /// ///
 		paine.add(cpf);
 		paine.add(txtCpf);
-		cpf.setBounds(10,120,70,30);
-		txtCpf.setBounds(90, 120, 225, 30);
+		cpf.setBounds(10,85,70,30);
+		txtCpf.setBounds(90, 85, 225, 30);
 		/// /// ///
 		paine.add(end);
 		paine.add(txtEnd);	
-		end.setBounds(10, 155, 70, 30);
-		txtEnd.setBounds(90, 155, 225, 30);	
+		end.setBounds(10, 120, 70, 30);
+		txtEnd.setBounds(90, 120, 225, 30);	
 		/// /// ///
 		paine.add(bairro);
 		paine.add(txtBairro);	
-		bairro.setBounds(10, 190, 70, 30);
-		txtBairro.setBounds(90, 190, 225, 30);
+		bairro.setBounds(10, 155, 70, 30);
+		txtBairro.setBounds(90, 155, 225, 30);
 		/// /// ///
 		paine.add(cep);
 		paine.add(txtCep);
-		cep.setBounds(10, 225, 70, 30);
-		txtCep.setBounds(90, 225, 225, 30);
+		cep.setBounds(10, 190, 70, 30);
+		txtCep.setBounds(90, 190, 225, 30);
 		/// /// ///
 		paine.add(idCurso);
 		paine.add(txtidCurso);	
-		idCurso.setBounds(10, 260, 70, 30);
-		txtidCurso.setBounds(90, 260, 225, 30);
-		
-		
+		idCurso.setBounds(10, 225, 70, 30);
+		txtidCurso.setBounds(90, 225, 225, 30);
+
 		paine.add(btnSalvar);
-		btnSalvar.setBounds(20, 330, 130, 30);
+		btnSalvar.setBounds(20, 280, 130, 30);
 		btnSalvar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try {
-					//int idSelecionado = txtID
-					int id = Integer.parseInt(txtID.getText());
-					Alunos alunos = new Alunos();
-					alunos.setNome(txtNome.getText());
-					alunos.setRg(txtRg.getText());
-					alunos.setCpf(txtCpf.getText());
-					alunos.setEndereco(txtEnd.getText());
-					alunos.setBairro(txtBairro.getText());
-					alunos.setCep(txtCep.getText());
-					alunos.setIdCurso(Integer.parseInt(txtidCurso.getText()));
+				Alunos alunos = new Alunos();
+				alunos.setNome(txtNome.getText());
+				alunos.setRg(txtRg.getText());
+				alunos.setCpf(txtCpf.getText());
+				alunos.setEndereco(txtEnd.getText());
+				alunos.setBairro(txtBairro.getText());
+				alunos.setCep(txtCep.getText());
+				alunos.setIdCurso(Integer.parseInt(txtidCurso.getText()));
+				
+				Connection connection = JdbUtil.getConnection();
+				AlunosJdbcDAO alunosJdbcDao = new AlunosJdbcDAO(connection);
+				
+				alunosJdbcDao.salvar(alunos);
+				JOptionPane.showMessageDialog(new JFrame(), "Cadastro Efetuado com Sucesso!");
+								
+				for (int i=0; i < getContentPane().getComponentCount(); i++) {
+					Component c = getContentPane().getComponent(i);
 					
-					Connection connection = JdbUtil.getConnection();
-					AlunosJdbcDAO alunosJdbcDao = new AlunosJdbcDAO(connection);
-					
-					alunosJdbcDao.atualizar(id,alunos);
-					JOptionPane.showMessageDialog(new JFrame(), "Cadastro Efetuado com Sucesso!");
-									
-					for (int i=0; i < getContentPane().getComponentCount(); i++) {
-						Component c = getContentPane().getComponent(i);
-						
-						if(c instanceof JTextField) {
-							JTextField field = (JTextField) c;
-							field.setText("");
-						}	
-					}
-					
-					}catch(Exception ex) {
-						ex.printStackTrace();
-						JOptionPane.showMessageDialog(new JFrame(), "ERRO! Cadastro não realizado");
-					}
+					if(c instanceof JTextField) {
+						JTextField field = (JTextField) c;
+						field.setText("");
+					}	
+				}
+				
+				}catch(Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(new JFrame(), "ERRO! Cadastro não realizado");
+				}
+				
 			}
 		});
 		
-		
 		paine.add(btnVoltar);
-		btnVoltar.setBounds(170, 330, 130, 30);
+		btnVoltar.setBounds(170, 280, 130, 30);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				App voltarApp = new App();
 				dispose();
 			}
 		});
-		
 		this.setResizable(false);
 		this.setLayout(null);
 		this.setVisible(true);
-		this.setSize(340, 400);
+		this.setSize(340, 360);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 	}
-public static void main (String args[]) {
-	atualizarAluno attAluno = new atualizarAluno();
-	
-}
+    public static void main( String[] args )
+    {
+    	CadAluno app = new CadAluno();
+    }
 
 }
