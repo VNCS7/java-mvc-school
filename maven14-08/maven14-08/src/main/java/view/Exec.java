@@ -47,19 +47,19 @@ public class Exec {
 				//alunosJdbcDao.deletar(2);
 				//alunosJdbcDao.listar();
 				
-				cursosJdbcDao.salvar(cursos);
+				//cursosJdbcDao.salvar(cursos);
 				//cursosJdbcDao.atualizar(idSelect, curso);
 				//cursosJdbcDao.deletar(idSelect);
 				//cursosJdbcDao.listar();
 				
-				disciplinaJdbcDao.salvar(disciplina);
+				//disciplinaJdbcDao.salvar(disciplina);
 				//disciplinaJdbcDao.atualizar(idSelect, disciplina);
 				//disciplinaJdbcDao.deletar(idSelect);
 				//disciplinaJdbcDao.listar();
 				
-				professorJdbcDao.salvar(prof);
+				//professorJdbcDao.salvar(prof);
 				//professorJdbcDao.atualizar(1, prof);
-				//professorJdbcDao.listar();
+				professorJdbcDao.listar();
 				
 		}catch (Exception e){
 			e.printStackTrace();

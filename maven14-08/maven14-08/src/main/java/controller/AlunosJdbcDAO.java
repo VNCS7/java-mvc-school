@@ -31,7 +31,7 @@ public class AlunosJdbcDAO {
 }
 	//NECESSITA DE ALTERAÇÕES (FALTANDO COLUNAS NA QUERY)
 	public void atualizar(int idSelect, Alunos c) throws SQLException {
-		String sql = "update alunos set nome='"+c.getNome()+"',endereco='"+c.getEndereco()+"',bairro='"+c.getBairro()+"',idCurso='"+c.getIdCurso()+"'where id = '"+idSelect+"'";
+		String sql = "update aluno set nome='"+c.getNome()+"',rg='"+c.getRg()+"',cpf='"+c.getCpf()+"',endereco='"+c.getEndereco()+"',bairro='"+c.getBairro()+"',cep='"+c.getCep()+"',idCurso='"+c.getIdCurso()+"'where idAluno = '"+idSelect+"'";
 		System.out.println(sql);
 		PreparedStatement prepareStatement;
 		try {
