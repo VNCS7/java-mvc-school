@@ -26,7 +26,7 @@ public class ProfessorJdbcDAO {
 		prepareStatement.close();
 }
 	public void deletar(int idSelect) throws SQLException {
-		String sql = "delete from professor where id='"+idSelect+"'";		
+		String sql = "delete from professor where idProfessor='"+idSelect+"'";		
 		System.out.println(sql);
 		PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
 		prepareStatement.executeUpdate();
@@ -34,7 +34,7 @@ public class ProfessorJdbcDAO {
 }
 	//NECESSITA DE ALTERAÇÕES (FALTANDO COLUNAS NA QUERY)
 	public void atualizar(int idSelect, Professor c) throws SQLException {
-		String sql = "update professor set nome='"+c.getNome()+"',endereco='"+c.getEndereco()+"',bairro='"+c.getBairro()+"',idCurso='"+c.getIdCurso()+"',idDisciplina='"+c.getIdDisciplina()+"where id = '"+idSelect+"'";
+		String sql = "update professor set nome='"+c.getNome()+"',endereco='"+c.getEndereco()+"',bairro='"+c.getBairro()+"',idCurso='"+c.getIdCurso()+"',idDisciplina='"+c.getIdDisciplina()+"'where idProfessor = '"+idSelect+"'";
 		System.out.println(sql);
 		PreparedStatement prepareStatement;
 		try {

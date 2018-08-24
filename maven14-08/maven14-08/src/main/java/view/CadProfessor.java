@@ -26,8 +26,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 
-public class cadProfessor extends JFrame {
-	/// /// ///
+public class CadProfessor extends JFrame {
+		/// /// ///
 		JLabel rg = new JLabel("RG:");
 		JFormattedTextField txtRg = new JFormattedTextField();
 		
@@ -56,7 +56,7 @@ public class cadProfessor extends JFrame {
 	JButton btnSalvar = new JButton("Salvar");
 	JButton btnVoltar = new JButton("Voltar");
 	
-	public cadProfessor(){
+	public CadProfessor(){
 		super("Cadastro de Professor");
 		
 		try {
@@ -176,7 +176,7 @@ public class cadProfessor extends JFrame {
 	}
     public static void main( String[] args )
     {
-    	cadProfessor cadastrarProfessor = new cadProfessor();
+    	CadProfessor cadastrarProfessor = new CadProfessor();
     }
 
 }
