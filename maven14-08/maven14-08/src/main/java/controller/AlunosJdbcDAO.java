@@ -42,6 +42,8 @@ public class AlunosJdbcDAO {
 			e.printStackTrace();
 		}		
 	}
+	
+
 	public List<Alunos> listar() throws SQLException{
 		String sql = "select * from aluno";
         System.out.println(sql);		
@@ -50,14 +52,15 @@ public class AlunosJdbcDAO {
 			PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
 			ResultSet rs = prepareStatement.executeQuery();
 			while(rs.next()) {
-				System.out.println("\nID: "+rs.getInt("idAluno")+"|NOME: "+rs.getString("nome")+"\t|ENDEREÇO: "+rs.getString("endereco")+"\t|BAIRRO: "+rs.getString("bairro")+"|\t|ID CURSO: "+rs.getInt("idCurso"));
-				}
-
+				//System.out.println("\nID: "+rs.getInt("idAluno")+"|NOME: "+rs.getString("nome")+"\t|ENDEREÇO: "+rs.getString("endereco")+"\t|BAIRRO: "+rs.getString("bairro")+"|\t|ID CURSO: "+rs.getInt("idCurso"));
+				
+			}
 			prepareStatement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return alunos;
+		
 	}
 
 }

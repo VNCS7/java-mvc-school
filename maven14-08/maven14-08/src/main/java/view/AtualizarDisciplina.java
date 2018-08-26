@@ -12,13 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import controller.AlunosJdbcDAO;
 import controller.CursoJdbcDAO;
+import controller.DisciplinaJdbcDAO;
 import controller.JdbUtil;
-import model.Alunos;
 import model.Curso;
+import model.Disciplina;
 
-public class AtualizarCurso extends JFrame{
+public class AtualizarDisciplina extends JFrame{
 	JTextField txtID = new JTextField();
 	JLabel ID = new JLabel("ID: ");
 	
@@ -30,11 +30,10 @@ public class AtualizarCurso extends JFrame{
 	
 	JButton btnSalvar = new JButton("Salvar");
 	JButton btnVoltar = new JButton("Voltar");
-	
-	public AtualizarCurso() {
-		super("Atulizar Curso");
-
-		Container paine = this.getContentPane();
+	public AtualizarDisciplina() {
+		super("Atualizar Disciplina");
+		
+Container paine = this.getContentPane();
 		
 		paine.add(ID);
 		paine.add(txtID);	
@@ -57,14 +56,14 @@ public class AtualizarCurso extends JFrame{
 			public void actionPerformed(ActionEvent e){
 				try {					
 					Connection connection = JdbUtil.getConnection();
-					CursoJdbcDAO cursosJdbcDao = new CursoJdbcDAO(connection);
-					Curso cursos = new Curso();
+					DisciplinaJdbcDAO disciplinasJdbcDao = new DisciplinaJdbcDAO(connection);
+					Disciplina disciplinas = new Disciplina();
 					
-					cursos.setNome(txtNome.getText());
-					cursos.setCargaHoraria(Integer.parseInt(txtCargaHoraria.getText()));
+					disciplinas.setNomeDisciplina(txtNome.getText());
+					disciplinas.setCargaHoraria(Integer.parseInt(txtCargaHoraria.getText()));
 					
 					int id = Integer.parseInt(txtID.getText());
-					cursosJdbcDao.atualizar(id, cursos);
+					disciplinasJdbcDao.atualizar(id, disciplinas);
 				
 					JOptionPane.showMessageDialog(new JFrame(), "Atualização Efetuado com Sucesso!");
 									
@@ -94,7 +93,19 @@ public class AtualizarCurso extends JFrame{
 			}
 		});
 		
-	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		this.setResizable(false);
 		this.setLayout(null);
 		this.setVisible(true);
@@ -102,8 +113,9 @@ public class AtualizarCurso extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 	}
-
-	public static void main (String args[]) {
-		AtualizarCurso attCurso = new AtualizarCurso();
+	
+	public static void main(String args[]) {
+		AtualizarDisciplina attDis = new AtualizarDisciplina();
 	}
+
 }
