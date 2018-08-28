@@ -168,6 +168,37 @@ public App() {
 	verPainel.setBorder(javax.swing.BorderFactory.createTitledBorder("Visualizar Cadastro"));
 	verPainel.setBounds(350, 130, 300, 80);
 	
+	verPainel.add(btnVerAluno);
+	btnVerAluno.setBounds(new java.awt.Rectangle(45,20,100,20));
+	btnVerAluno.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			dispose();
+		}
+	});
+	
+	verPainel.add(btnVerCurso);
+	btnVerCurso.setBounds(new java.awt.Rectangle(155,20,100,20));
+	btnVerCurso.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			dispose();
+		}
+	});
+	
+	verPainel.add(btnVerDisciplina);
+	btnVerDisciplina.setBounds(new java.awt.Rectangle(45,50,100,20));
+	btnVerDisciplina.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			dispose();
+		}
+	});
+	
+	verPainel.add(btnVerProfessor);
+	btnVerProfessor.setBounds(new java.awt.Rectangle(155,50,100,20));
+	btnVerProfessor.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			dispose();
+		}
+	});
 	
 	this.setLayout(null);
 	this.setResizable(false);
