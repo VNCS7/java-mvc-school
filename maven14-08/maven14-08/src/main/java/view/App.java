@@ -172,6 +172,7 @@ public App() {
 	btnVerAluno.setBounds(new java.awt.Rectangle(45,20,100,20));
 	btnVerAluno.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
+			VisualizarAluno vmAluno = new VisualizarAluno();
 			dispose();
 		}
 	});

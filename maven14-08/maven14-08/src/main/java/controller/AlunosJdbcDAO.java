@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
 import model.Alunos;
 
@@ -44,7 +45,7 @@ public class AlunosJdbcDAO {
 	}
 	
 
-	public List<Alunos> listar() throws SQLException{
+/*	public List<Alunos> listar() throws SQLException{
 		String sql = "select * from aluno";
         System.out.println(sql);		
         List<Alunos> alunos = new ArrayList<Alunos>();
@@ -60,7 +61,38 @@ public class AlunosJdbcDAO {
 			e.printStackTrace();
 		}
 		return alunos;
+*/
+	public DefaultTableModel visualizar() throws Exception{
 		
+		DefaultTableModel modeloTable = new DefaultTableModel() {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+	};
+	
+	String query = "select * from aluno";
+	
+	try {
+		PreparedStatement prepareStatement = this.conn.prepareStatement(query);
+		ResultSet rs = prepareStatement.executeQuery();
+		
+			modeloTable.addColumn("ID");
+			modeloTable.addColumn("NOME");
+			modeloTable.addColumn("RG");
+			modeloTable.addColumn("CPF");
+			modeloTable.addColumn("ENDEREÇO");
+			modeloTable.addColumn("CEP");
+			modeloTable.addColumn("ID CURSO");
+			
+			while(rs.next()) {
+				modeloTable.addRow(new String[] {rs.getString("idAluno"),rs.getString("nome"),rs.getString("rg"),rs.getString("cpf"),rs.getString("endereco"),rs.getString("cep"),rs.getString("idCurso")});
+			}
+			prepareStatement.close();
+		
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
+	return modeloTable;
 	}
 
 }
