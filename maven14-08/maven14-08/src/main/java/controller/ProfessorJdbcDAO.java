@@ -1,6 +1,9 @@
 package controller;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -18,7 +21,6 @@ public class ProfessorJdbcDAO {
 	}
 	
 	public void salvar(Professor c) throws SQLException {
-		//String sql = "insert into professor (nome,endereco,bairro,idCurso, idDisciplina) values ('"+c.getNome()+"','"+c.getBairro()+"','"+c.getEndereco()+"','"+c.getIdCurso()+"','"+c.getIdDisciplina()+"')";
 		String sql = "insert into professor (nome,rg,cpf,endereco,bairro,cep,idCurso,idDisciplina) values ('"+c.getNome()+"','"+c.getRg()+"','"+c.getCpf()+"','"+c.getEndereco()+"','"+c.getBairro()+"','"+c.getCep()+"','"+c.getIdCurso()+"','"+c.getIdDisciplina()+"')";
 		System.out.println(sql);
 		PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
@@ -32,7 +34,7 @@ public class ProfessorJdbcDAO {
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 }
-	//NECESSITA DE ALTERAÇÕES (FALTANDO COLUNAS NA QUERY)
+
 	public void atualizar(int idSelect, Professor c) throws SQLException {
 		String sql = "update professor set nome='"+c.getNome()+"',endereco='"+c.getEndereco()+"',bairro='"+c.getBairro()+"',idCurso='"+c.getIdCurso()+"',idDisciplina='"+c.getIdDisciplina()+"'where idProfessor = '"+idSelect+"'";
 		System.out.println(sql);
@@ -45,22 +47,40 @@ public class ProfessorJdbcDAO {
 			e.printStackTrace();
 		}		
 	}
-	public List<Alunos> listar() throws SQLException{
-		String sql = "select * from professor";
-        System.out.println(sql);		
-        List<Alunos> alunos = new ArrayList<Alunos>();
-		try {
-			PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
-			ResultSet rs = prepareStatement.executeQuery();
+	
+	public DefaultTableModel visualizar() throws Exception{
+		
+		DefaultTableModel modeloTable = new DefaultTableModel() {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+	};
+	
+	String query = "select * from professor";
+	
+	try {
+		PreparedStatement prepareStatement = this.conn.prepareStatement(query);
+		ResultSet rs = prepareStatement.executeQuery();
+		
+			modeloTable.addColumn("ID");
+			modeloTable.addColumn("NOME");
+			modeloTable.addColumn("RG");
+			modeloTable.addColumn("CPF");
+			modeloTable.addColumn("ENDEREÇO");
+			modeloTable.addColumn("BAIRRO");
+			modeloTable.addColumn("CEP");
+			modeloTable.addColumn("ID CURSO");
+			modeloTable.addColumn("ID DISCIPLINA");
+			
 			while(rs.next()) {
-				System.out.println("\nID: "+rs.getInt("idProfessor")+"\t|NOME: "+rs.getString("nome")+"\t|ENDEREÇO: "+rs.getString("endereco")+"\t|BAIRRO: "+rs.getString("bairro")+"|\t|ID CURSO: "+rs.getInt("idCurso"));
-				}
-
+				modeloTable.addRow(new String[] {rs.getString("idProfessor"),rs.getString("nome"),rs.getString("rg"),rs.getString("cpf"),rs.getString("endereco"),rs.getString("bairro"),rs.getString("cep"),rs.getString("idCurso"),rs.getString("idDisciplina")});
+			}
 			prepareStatement.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return alunos;
+		
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
+	return modeloTable;
 	}
 }
 

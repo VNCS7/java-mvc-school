@@ -30,7 +30,7 @@ public class AlunosJdbcDAO {
 		prepareStatement.executeUpdate();
 		prepareStatement.close();
 }
-	//NECESSITA DE ALTERAÇÕES (FALTANDO COLUNAS NA QUERY)
+
 	public void atualizar(int idSelect, Alunos c) throws SQLException {
 		String sql = "update aluno set nome='"+c.getNome()+"',rg='"+c.getRg()+"',cpf='"+c.getCpf()+"',endereco='"+c.getEndereco()+"',bairro='"+c.getBairro()+"',cep='"+c.getCep()+"',idCurso='"+c.getIdCurso()+"'where idAluno = '"+idSelect+"'";
 		System.out.println(sql);
@@ -43,25 +43,7 @@ public class AlunosJdbcDAO {
 			e.printStackTrace();
 		}		
 	}
-	
 
-/*	public List<Alunos> listar() throws SQLException{
-		String sql = "select * from aluno";
-        System.out.println(sql);		
-        List<Alunos> alunos = new ArrayList<Alunos>();
-		try {
-			PreparedStatement prepareStatement = this.conn.prepareStatement(sql);
-			ResultSet rs = prepareStatement.executeQuery();
-			while(rs.next()) {
-				//System.out.println("\nID: "+rs.getInt("idAluno")+"|NOME: "+rs.getString("nome")+"\t|ENDEREÇO: "+rs.getString("endereco")+"\t|BAIRRO: "+rs.getString("bairro")+"|\t|ID CURSO: "+rs.getInt("idCurso"));
-				
-			}
-			prepareStatement.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return alunos;
-*/
 	public DefaultTableModel visualizar() throws Exception{
 		
 		DefaultTableModel modeloTable = new DefaultTableModel() {

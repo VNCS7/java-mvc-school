@@ -4,26 +4,28 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controller.AlunosJdbcDAO;
+import controller.DisciplinaJdbcDAO;
 import controller.JdbUtil;
+import controller.ProfessorJdbcDAO;
 
-public class VisualizarAluno extends JFrame {
-	JTable tabelaAluno = new JTable();
+public class VisualizarProfessor extends JFrame {
+	JTable tabelaDisciplina = new JTable();
 	JButton btnVoltar = new JButton("Voltar");
 	
-	public VisualizarAluno() {
-		super("Visualizar Aluno");
+	public VisualizarProfessor() {
+		super("Visualizar Professor");
 		
 		try {
 			Connection conn = JdbUtil.getConnection();
-			AlunosJdbcDAO alunosJDBC = new AlunosJdbcDAO(conn);
+			ProfessorJdbcDAO professoressJDBC = new ProfessorJdbcDAO(conn);
 			DefaultTableModel tableVisualizar = new DefaultTableModel();
-			tabelaAluno.setModel(alunosJDBC.visualizar());		
+			tabelaDisciplina.setModel(professoressJDBC.visualizar());		
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -31,8 +33,8 @@ public class VisualizarAluno extends JFrame {
 		Container paine = this.getContentPane();
 		paine.setLayout(null);	
 		
-		tabelaAluno.setBounds(0, 0, 1000, 530);
-		paine.add(tabelaAluno);
+		tabelaDisciplina.setBounds(0, 0, 1000, 530);
+		paine.add(tabelaDisciplina);
 		
 		paine.add(btnVoltar);
 		btnVoltar.setBounds(10, 535, 70, 30);
@@ -51,7 +53,7 @@ public class VisualizarAluno extends JFrame {
 	}
 	
 	public static void main(String args[]) {
-		VisualizarAluno vmA = new VisualizarAluno();
+		VisualizarProfessor vmP = new VisualizarProfessor();
 	}
 
 }

@@ -181,6 +181,7 @@ public App() {
 	btnVerCurso.setBounds(new java.awt.Rectangle(155,20,100,20));
 	btnVerCurso.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
+			VisualizarCurso vmCurso = new VisualizarCurso();
 			dispose();
 		}
 	});
@@ -189,6 +190,7 @@ public App() {
 	btnVerDisciplina.setBounds(new java.awt.Rectangle(45,50,100,20));
 	btnVerDisciplina.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
+			VisualizarDisciplina vmDisciplina = new VisualizarDisciplina();
 			dispose();
 		}
 	});
@@ -197,6 +199,7 @@ public App() {
 	btnVerProfessor.setBounds(new java.awt.Rectangle(155,50,100,20));
 	btnVerProfessor.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
+			VisualizarProfessor vmProfessor = new VisualizarProfessor();
 			dispose();
 		}
 	});
